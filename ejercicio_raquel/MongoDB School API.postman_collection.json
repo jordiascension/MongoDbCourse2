@@ -1,0 +1,338 @@
+{
+	"info": {
+		"_postman_id": "4b1577a3-0d5e-4929-9cde-387a88a347aa",
+		"name": "MongoDB School API",
+		"description": "This collection is an introduction to the [MongoDB Data API](https://www.mongodb.com/data-api/l). The Data API provides you with a REST-like access to your data in [MongoDB Atlas](https://www.mongodb.com/atlas), the database-as-a-service offering by MongoDB.\n\nYou can find the full documentation on the MongoDB Data API on the [documentation website](https://docs.atlas.mongodb.com/api/data-api-resources/#data-api-resources).\n\n## Getting Started\n\nTo test out the MongoDB Data API collection, start by [creating a free MongoDB Atlas cluster](https://docs.atlas.mongodb.com/tutorial/deploy-free-tier-cluster/).\n\nOnce you have a cluster, you can [fork this collection](https://www.postman.com/mongodb-devrel/workspace/mongodb-public/collection/17898583-25682080-e247-4d25-8e5c-1798461c7db4/fork) into your own workspace so you'll be able to use it with your own variables.\n\nOnce you have a cluster up and running, [enable the Data API](https://docs.atlas.mongodb.com/api/data-api/#1.-enable-the-data-api).\n\nFrom the Atlas UI, copy the URL endpoint provided for the Data API, and paste the value in your URL_ENDPOINT collection variable.\n\nStill in the Atlas UI, create a new API key, copy the value and paste it in the API_KEY collection variable.\n\nWith the [EJSON format](https://www.mongodb.com/docs/atlas/api/data-api/#extended-json-responses), you can benefit from MongoDB’s Extended JSON format, which preserves many data types that are normally not supported by JSON (such as ObjectID, Date, and more).\n\nFor writes, the {{CONTENT_TYPE}} variable is required and can be set to either `json` or `ejson`. This variable is used by Postman in the *Content-Type* header.\n\nFor reads, the Data API returns JSON by default, but can be changed to EJSON by setting the *Accept* header. You can set the {{CONTENT_TYPE}} variable to `json` or `ejson` to change the default behavior. Changing this variable will change the *Accept* header when Postman does a request to the Data API. The default content type returned by Atlas can also be changed in the Atlas Admin UI.\n\nFill in the other variables with the appropriate values for your cluster, database, and collection names.\n\nYou can now explore the various endpoints and see how to perform CRUD operations on your collection using the MongoDB Data API.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28220617"
+	},
+	"item": [
+		{
+			"name": "Get Publications Greater than 60",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "tccmms2K6ej0wJbIfkdhpQNTmrPVR4soH8NlCmuntZjfCg87CqCLz0NPXG0QXo3B",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"dataSource\": \"Cluster0\",\r\n      \"database\": \"school\",\r\n      \"collection\": \"students\",\r\n      \"filter\": { \"publications\": { \"$gt\": 60 } }\r\n}"
+				},
+				"url": {
+					"raw": "{{URL_ENDPOINT}}/action/findOne",
+					"host": [
+						"{{URL_ENDPOINT}}"
+					],
+					"path": [
+						"action",
+						"findOne"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Students",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "tccmms2K6ej0wJbIfkdhpQNTmrPVR4soH8NlCmuntZjfCg87CqCLz0NPXG0QXo3B",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"dataSource\": \"Cluster0\",\r\n      \"database\": \"school\",\r\n      \"collection\": \"students\",\r\n      \"filter\": { }\r\n}"
+				},
+				"url": {
+					"raw": "{{URL_ENDPOINT}}/action/findOne",
+					"host": [
+						"{{URL_ENDPOINT}}"
+					],
+					"path": [
+						"action",
+						"findOne"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert One Student",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "tccmms2K6ej0wJbIfkdhpQNTmrPVR4soH8NlCmuntZjfCg87CqCLz0NPXG0QXo3B",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \r\n    \"dataSource\": \"Cluster0\",\r\n      \"database\": \"school\",\r\n      \"collection\": \"students\",\r\n        \"document\": {\r\n            \"name\": \"Joan\",\r\n            \"surname\": \"Espadas\",\r\n            \"lectures\": [{\"UB\":3}, {\"UdG\": 12}],\r\n            \"publications\": 75\r\n        }\r\n}"
+				},
+				"url": {
+					"raw": "{{URL_ENDPOINT}}/action/insertOne",
+					"host": [
+						"{{URL_ENDPOINT}}"
+					],
+					"path": [
+						"action",
+						"insertOne"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update One Student",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "tccmms2K6ej0wJbIfkdhpQNTmrPVR4soH8NlCmuntZjfCg87CqCLz0NPXG0QXo3B",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \r\n    \"dataSource\": \"Cluster0\",\r\n      \"database\": \"school\",\r\n      \"collection\": \"students\",\r\n      \"filter\": { \"publications\": 64 },\r\n      \"update\": { \"$set\": { \"publications\": 65 } }\r\n}"
+				},
+				"url": {
+					"raw": "{{URL_ENDPOINT}}/action/updateOne",
+					"host": [
+						"{{URL_ENDPOINT}}"
+					],
+					"path": [
+						"action",
+						"updateOne"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete One Student",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "tccmms2K6ej0wJbIfkdhpQNTmrPVR4soH8NlCmuntZjfCg87CqCLz0NPXG0QXo3B",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \r\n    \"dataSource\": \"Cluster0\",\r\n      \"database\": \"school\",\r\n      \"collection\": \"students\",\r\n      \"filter\": { \"publications\": { \"$gt\": 70 } }\r\n}"
+				},
+				"url": {
+					"raw": "{{URL_ENDPOINT}}/action/deleteOne",
+					"host": [
+						"{{URL_ENDPOINT}}"
+					],
+					"path": [
+						"action",
+						"deleteOne"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Many Students",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "tccmms2K6ej0wJbIfkdhpQNTmrPVR4soH8NlCmuntZjfCg87CqCLz0NPXG0QXo3B",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \r\n    \"dataSource\": \"Cluster0\",\r\n      \"database\": \"school\",\r\n      \"collection\": \"students\",\r\n      \"filter\": { \"publications\": { \"$gt\": 70 } }\r\n}"
+				},
+				"url": {
+					"raw": "{{URL_ENDPOINT}}/action/deleteMany",
+					"host": [
+						"{{URL_ENDPOINT}}"
+					],
+					"path": [
+						"action",
+						"deleteMany"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL_ENDPOINT",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "API_KEY",
+			"value": ""
+		},
+		{
+			"key": "DATA_SOURCE",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "DATABASE",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "COLLECTION",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "CONTENT_TYPE",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
