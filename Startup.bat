@@ -1,0 +1,2 @@
+start newman run "MongoDb Jordi Api.postman_collection.json" -e MongoJordiWebApiDev.postman_environment.json -r htmlextra
+start newman run "ejercicio_raquel/MongoDB School API.postman_collection.json" -e "ejercicio_raquel/MongoRaquelWebAPIDev.postman_environment.json" -r htmlextra
